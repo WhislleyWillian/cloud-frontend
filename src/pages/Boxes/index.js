@@ -5,19 +5,18 @@ import pt from 'date-fns/locale/pt';
 import Dropzone from 'react-dropzone';
 import socket from 'socket.io-client';
 
-import {MdInsertDriveFile} from 'react-icons/md'
+import {MdInsertDriveFile, MdFolder} from 'react-icons/md'
 
 import logo from '../../assets/logo.svg'
-import styles from "./Box.module.css"
+import styles from "./Boxes.module.css"
 
-export default class Box extends Component {
-  state = { box: {} }
+export default class Boxes extends Component {
+  state = { box: [] }
 
   async componentDidMount() {
     this.subcribeToNewFiles();
 
-    const box = this.props.match.params.id;
-    const response = await api.get(`boxes/${box}`);
+    const response = await api.get(`boxes-view`);
 
     this.setState({ box: response.data });
 
@@ -53,29 +52,25 @@ export default class Box extends Component {
       <div className={styles.boxContainer}>
         <header>
           <img src={logo} alt="" />
-          <h1>{this.state.box.title}</h1>
+          <h1>User: Whislley</h1>
         </header>
 
-        <Dropzone onDropAccepted={ this.handleUpload }>
-          {({ getRootProps, getInputProps }) => (
-            <div className={styles.upload} { ...getRootProps() }>
-              <input { ...getInputProps() } />
-
-              <p>Arrate arquivos ou clique aqui.</p>
-            </div>
-          )}
-        </Dropzone>
-
         <ul>
-          { this.state.box.files && this.state.box.files.map(file => (
-            <li key={ file._id }>
-              <a className={styles.fileInfo} href={file.url} target="_blank">
-                <MdInsertDriveFile size={24} color="#A5Cfff"/>
-                <strong>{file.title}</strong>
-              </a>
-              <span>há {distanceInWords(file.createdAt, new Date(), {
-                locale: pt
-              })}</span>
+          { this.state.box && this.state.box.map(boxes => (
+            <li key={ boxes._id }>
+
+              <MdFolder className={styles.icon} size={24} color="#A5Cfff"/>
+
+              <div>
+                <a className={styles.fileInfo} href="#" >
+                  <strong>{boxes.title}</strong>
+                </a>
+
+                <span>modificado há: {distanceInWords(boxes.updatedAt, new Date(), {
+                  locale: pt
+                })}</span>
+              </div>
+
             </li>
           )) }
         </ul>

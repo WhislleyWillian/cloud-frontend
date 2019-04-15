@@ -1,0 +1,90 @@
+.boxContainer {
+  max-width: 900px;
+  margin: 50px auto 0;
+}
+
+.boxContainer header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.boxContainer header h1 {
+  font-size: 21px;
+  padding-left: 15px;
+  margin-left: 15px;
+  border-left: 1px solid #ddd;
+}
+
+.boxContainer header button svg {
+  margin-right: 10px;
+}
+
+.boxContainer header button:hover {
+  opacity: 0.9;
+}
+
+.boxContainer ul {
+  margin: 30px 0;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.boxContainer ul li {
+  box-shadow: -3px 3px 12px 0px #ddd;
+  border-radius: 10px;
+  width: 200px;
+  height: 80px;
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.boxContainer ul li div {
+  height: 70%;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+}
+
+.icon {
+  height: 100%;
+  width: 20%;
+}
+
+.fileInfo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  height: 50%;
+}
+
+.fileInfo strong {
+  font-weight: normal;
+  font-size: 14px;
+  margin-left: 20px;
+  color: #333;
+}
+
+.boxContainer ul li span {
+  color: #999;
+  font-size: 12px;
+  margin-left: 20px;
+  height: 50%;
+  line-height: 27px;
+}
+
+.upload {
+  border-radius: 4px;
+  padding: 30px;
+  text-align: center;
+  border: 1px dashed #ddd;
+  color: #999;
+  margin-top: 50px;
+  cursor: pointer;
+}
