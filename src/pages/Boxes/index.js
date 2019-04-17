@@ -19,8 +19,6 @@ export default class Boxes extends Component {
     const response = await api.get(`boxes-view`);
 
     this.setState({ box: response.data });
-
-    console.log(this.state.box);
   }
 
   subcribeToNewFiles = () => {
@@ -45,7 +43,11 @@ export default class Boxes extends Component {
 
       api.post(`boxes/${box}/files`, data);
     });
-  }
+  };
+
+  handleOpenBoxe = (e) => {
+    this.props.history.push(`/box/${e.currentTarget.id}`);
+  };
 
   render() {
     return (
@@ -57,19 +59,16 @@ export default class Boxes extends Component {
 
         <ul>
           { this.state.box && this.state.box.map(boxes => (
-            <li key={ boxes._id }>
+            <li key={ boxes._id } id={ boxes._id } onDoubleClick={ this.handleOpenBoxe } >
 
-              <MdFolder className={styles.icon} size={24} color="#A5Cfff"/>
-
-              <div>
-                <a className={styles.fileInfo} href="#" >
-                  <strong>{boxes.title}</strong>
-                </a>
-
-                <span>modificado há: {distanceInWords(boxes.updatedAt, new Date(), {
-                  locale: pt
-                })}</span>
+              <div className={styles.fileInfo} >
+                <MdFolder className={styles.icon} size={24} color="#A5Cfff"/>
+                <strong>{boxes.title}</strong>
               </div>
+
+              <span>modificado há: {distanceInWords(boxes.updatedAt, new Date(), {
+                locale: pt
+              })}</span>
 
             </li>
           )) }

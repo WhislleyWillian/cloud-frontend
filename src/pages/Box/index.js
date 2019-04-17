@@ -20,8 +20,6 @@ export default class Box extends Component {
     const response = await api.get(`boxes/${box}`);
 
     this.setState({ box: response.data });
-
-    console.log(this.state.box);
   }
 
   subcribeToNewFiles = () => {

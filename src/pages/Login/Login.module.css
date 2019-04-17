@@ -1,26 +1,26 @@
-#main-container {
+.mainContainer {
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#main-container form {
+.mainContainer form {
     width: 300px;
     display: flex;
     flex-direction: column;
 }
 
-#main-container form input {
+.mainContainer form input {
     height: 48px;
     border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 16px;
     padding: 0 20px;
-    margin-top: 30px;
+    margin-top: 10px;
 }
 
-#main-container form button {
+.mainContainer form button {
     height: 48px;
     background: #7159c1;
     border-radius: 4px;
@@ -33,6 +33,6 @@
     cursor: pointer;
 }
 
-#main-container form button:hover {
+.mainContainer form button:hover {
     opacity: 0.8;
 }

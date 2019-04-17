@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import logo from '../../assets/logo.svg'
-import './styles.css';
+import logo from '../../assets/logo.svg';
+import styles from "./Login.module.css";
 
 export default class Login extends Component {
 
@@ -31,12 +31,13 @@ export default class Login extends Component {
 
     render() {
         return (
-            <div id="main-container">
+            <div className={styles.mainContainer}>
                 <form onSubmit={this.handleSubmit}>
                     <img src={logo} alt=""/>
                     <input placeholder="User" value={this.state.user} onChange={this.handleUserChange} />
                     <input placeholder="Password" type="password" value={this.state.password} onChange={this.handlePasswordChange} />
                     <button type="submit">Entrar</button>
+                    <button type="submit">Cadastrar</button>
                 </form>
             </div>
         );
