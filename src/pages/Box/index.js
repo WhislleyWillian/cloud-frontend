@@ -50,7 +50,7 @@ export default class Box extends Component {
 
       data.append('file', file);
 
-      api.post(`share-box`, data);
+      api.post(`boxes/${box}/files`, data);
     });
   }
 
@@ -59,7 +59,9 @@ export default class Box extends Component {
   }
 
   shareBox = () => {
-
+    const box = this.props.match.params.id;
+    let shareUser = this.state.shareUser;
+    api.post(`share-box`, { shareUser, box});
   }
 
   shareUserInputChange = (e) => {
