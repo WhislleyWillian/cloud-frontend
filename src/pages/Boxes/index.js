@@ -2,23 +2,33 @@ import React, { Component } from 'react';
 import api from '../../services/api';
 import { distanceInWords } from 'date-fns';
 import pt from 'date-fns/locale/pt';
-import Dropzone from 'react-dropzone';
 import socket from 'socket.io-client';
+import { logout, getTokenName } from "../../services/auth";
 
-import {MdInsertDriveFile, MdFolder} from 'react-icons/md'
+import { MdFolder } from 'react-icons/md'
 
 import logo from '../../assets/logo.svg'
 import styles from "./Boxes.module.css"
 
 export default class Boxes extends Component {
-  state = { box: [] }
+  state = { 
+    username: '',
+    box: [],
+    newBox: ''
+  }
 
   async componentDidMount() {
+
     this.subcribeToNewFiles();
 
-    const response = await api.get(`boxes-view`);
-
-    this.setState({ box: response.data });
+    try {
+      const response = await api.get(`boxes-view`);
+      // console.log("resposta do backend", response);
+      this.setState({ box: response.data });
+    } catch (err) {
+      // console.log("erro do backend", err);
+      this.props.history.push(`/`);
+    }
   }
 
   subcribeToNewFiles = () => {
@@ -49,13 +59,42 @@ export default class Boxes extends Component {
     this.props.history.push(`/box/${e.currentTarget.id}`);
   };
 
+  createBox = async (e) => {
+    e.preventDefault();
+
+    const response = await api.post(`new-box`, {
+        title: this.state.newBox,
+    });
+
+    this.props.history.push(`/box/${response.data._id}`);
+  }
+
+  newBoxInputChange = (e) => {
+      this.setState({ newBox: e.target.value });
+  }
+
+  handleLogout = () => {
+    logout();
+  }
+
   render() {
     return (
       <div className={styles.boxContainer}>
         <header>
           <img src={logo} alt="" />
-          <h1>User: Whislley</h1>
+          <h1>{getTokenName()}</h1>
+          <form onSubmit={this.handleLogout}>
+            <button type="submit" >Sair</button>
+          </form>
         </header>
+
+
+        <div id="main-container">
+            <form onSubmit={this.createBox}>
+                <input placeholder="Criar um box" value={this.state.newBox} onChange={this.newBoxInputChange} />
+                <button type="submit">Criar</button>
+            </form>
+        </div>
 
         <ul>
           { this.state.box && this.state.box.map(boxes => (

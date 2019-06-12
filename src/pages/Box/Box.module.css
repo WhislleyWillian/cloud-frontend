@@ -9,6 +9,22 @@
   align-items: center;
 }
 
+.boxContainer header form button {
+  height: 30px;
+  background: #7159c1;
+  border-radius: 4px;
+  font-size: 16px;
+  padding: 0 20px;
+  margin-top: 10px;
+  color: #FFF;
+  font-weight: bold;
+  border: 0;
+  cursor: pointer;
+  position: absolute;
+  margin-top: -15px;
+  margin-left: 150px;
+}
+
 .boxContainer header h1 {
   font-size: 21px;
   padding-left: 15px;
@@ -67,4 +83,28 @@
   color: #999;
   margin-top: 50px;
   cursor: pointer;
+}
+
+.boxContainer div form input {
+  height: 30px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  padding: 0 20px;
+  margin-top: 10px;
+  width: 350px;
+}
+
+.boxContainer div form button {
+  height: 30px;
+  background: #7159c1;
+  border-radius: 4px;
+  font-size: 16px;
+  padding: 0 20px;
+  margin-top: 10px;
+  color: #FFF;
+  font-weight: bold;
+  border: 0;
+  cursor: pointer;
+  margin-left: 30px;
 }

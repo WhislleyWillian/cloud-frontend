@@ -20,21 +20,6 @@
     margin-top: 10px;
 }
 
-.mainContainer button {
-    height: 48px;
-    background: #7159c1;
-    border-radius: 4px;
-    font-size: 16px;
-    padding: 0 20px;
-    margin-top: 10px;
-    color: #FFF;
-    font-weight: bold;
-    border: 0;
-    cursor: pointer;
-
-    
-}
-
 .mainContainer form button {
     height: 48px;
     background: #7159c1;

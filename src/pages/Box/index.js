@@ -4,6 +4,7 @@ import { distanceInWords } from 'date-fns';
 import pt from 'date-fns/locale/pt';
 import Dropzone from 'react-dropzone';
 import socket from 'socket.io-client';
+import { logout, getTokenName } from "../../services/auth";
 
 import {MdInsertDriveFile} from 'react-icons/md'
 
@@ -11,15 +12,22 @@ import logo from '../../assets/logo.svg'
 import styles from "./Box.module.css"
 
 export default class Box extends Component {
-  state = { box: {} }
+  state = { 
+    box: {} ,
+    shareUser: ''
+  }
 
   async componentDidMount() {
     this.subcribeToNewFiles();
 
-    const box = this.props.match.params.id;
-    const response = await api.get(`boxes/${box}`);
+    try {
+      const box = this.props.match.params.id;
+      const response = await api.get(`box/${box}`);
 
-    this.setState({ box: response.data });
+      this.setState({ box: response.data });
+    } catch (err) {
+      this.props.history.push(`/`);
+    }
   }
 
   subcribeToNewFiles = () => {
@@ -42,8 +50,20 @@ export default class Box extends Component {
 
       data.append('file', file);
 
-      api.post(`boxes/${box}/files`, data);
+      api.post(`share-box`, data);
     });
+  }
+
+  handleLogout = () => {
+    logout();
+  }
+
+  shareBox = () => {
+
+  }
+
+  shareUserInputChange = (e) => {
+    this.setState({ shareUser: e.target.value });
   }
 
   render() {
@@ -51,7 +71,10 @@ export default class Box extends Component {
       <div className={styles.boxContainer}>
         <header>
           <img src={logo} alt="" />
-          <h1>{this.state.box.title}</h1>
+          <h1>{getTokenName() + " - " + this.state.box.title}</h1>
+          <form onSubmit={this.handleLogout}>
+            <button type="submit" >Sair</button>
+          </form>
         </header>
 
         <Dropzone onDropAccepted={ this.handleUpload }>
@@ -63,6 +86,13 @@ export default class Box extends Component {
             </div>
           )}
         </Dropzone>
+
+        <div id="main-container">
+            <form onSubmit={this.shareBox}>
+                <input placeholder="Compartilhar pasta com outro usuário" value={this.state.shareUser} onChange={this.shareUserInputChange} />
+                <button type="submit">Compartilhar</button>
+            </form>
+        </div>
 
         <ul>
           { this.state.box.files && this.state.box.files.map(file => (
