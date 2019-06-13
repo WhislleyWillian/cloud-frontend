@@ -52,10 +52,10 @@ export default class Register extends Component {
             <div className={styles.mainContainer}>
                 <form onSubmit={this.handleRegister}>
                     <img src={logo} alt=""/>
-                    <input placeholder="User" value={this.state.username} onChange={this.handleUserChange} />
-                    <input placeholder="Password" type="password" value={this.state.password} onChange={this.handlePasswordChange} />
-                    <input placeholder="Retry the Password" type="password" value={this.state.password2} onChange={this.handlePassword2Change} />
-                    <input placeholder="E-mail" value={this.state.email} onChange={this.handleEmailChange} />
+                    <input required placeholder="User" value={this.state.username} onChange={this.handleUserChange} />
+                    <input required placeholder="Password" type="password" value={this.state.password} onChange={this.handlePasswordChange} />
+                    <input required placeholder="Retry the Password" type="password" value={this.state.password2} onChange={this.handlePassword2Change} />
+                    <input required placeholder="E-mail" value={this.state.email} onChange={this.handleEmailChange} />
                     <button type="submit">Cadastrar</button>
                 </form>
             </div>

@@ -91,7 +91,7 @@ export default class Boxes extends Component {
 
         <div id="main-container">
             <form onSubmit={this.createBox}>
-                <input placeholder="Criar um box" value={this.state.newBox} onChange={this.newBoxInputChange} />
+                <input required placeholder="Criar um box" value={this.state.newBox} onChange={this.newBoxInputChange} />
                 <button type="submit">Criar</button>
             </form>
         </div>
