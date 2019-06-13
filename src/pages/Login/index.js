@@ -49,8 +49,8 @@ export default class Login extends Component {
             <div className={styles.mainContainer}>
                 <form onSubmit={this.handleLogin}>
                     <img src={logo} alt=""/>
-                    <input placeholder="User" value={this.state.username} onChange={this.handleUserChange} />
-                    <input placeholder="Password" type="password" value={this.state.password} onChange={this.handlePasswordChange} />
+                    <input required placeholder="User" value={this.state.username} onChange={this.handleUserChange} />
+                    <input required placeholder="Password" type="password" value={this.state.password} onChange={this.handlePasswordChange} />
                     <button type="submit">Entrar</button>
                     <button onClick={this.handleRegister}>Cadastrar</button>
                 </form>
